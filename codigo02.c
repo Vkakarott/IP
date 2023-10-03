@@ -13,8 +13,8 @@ int main() {
 	    scanf("%f", &notas);
         printf("Peso da nota %d: ", i);
         scanf("%f", &peso);
-        media = media + notas * peso;
-        somaPesos = somaPesos + peso;
+        media += notas * peso;
+        somaPesos += peso;
     }
 	
     media = media / somaPesos;
