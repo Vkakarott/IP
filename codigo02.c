@@ -17,7 +17,7 @@ int main() {
         somaPesos += peso;
     }
 	
-    media = media / somaPesos;
+    media /= somaPesos;
 
 	printf("A media entre as notas é %.2f\n", media);
 }
