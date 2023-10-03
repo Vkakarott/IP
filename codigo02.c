@@ -20,4 +20,9 @@ int main() {
     media /= somaPesos;
 
 	printf("A media entre as notas é %.2f\n", media);
+
+    if (media >= 7) printf(" Parabens! Voce esta aprovado!");
+    else if(media == 0) printf("PQP! Que burro!");
+    else printf ("Voce esta abaixo da media!");
+
 }
