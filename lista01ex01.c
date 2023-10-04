@@ -1,3 +1,5 @@
+// CONSUMO DE ENERGIA
+
 //100 kW custa 70% do salario minimo
 
 //calcular valor em reais de cada kW

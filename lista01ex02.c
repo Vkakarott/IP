@@ -1,3 +1,5 @@
+// CONVERSÃO PARA SISTEMA METRICOS
+
 //ler a temperatura em fahrenheit e imprimir em ceulcius
 //ler a quantidaded de chuva em polegadas e imprimir em milimetros
 
