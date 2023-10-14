@@ -30,7 +30,7 @@ int main(){
         } else if (nf < 6 && ch >= 75){
             fn = 2;
         } else if(nf < 6 && ch < 75){
-            fn - 3;
+            fn = 3;
         }
 
         printf("Matricula: %d, Nota Final: %.2lf, Situacao Final: %s\n", m, nf, arr[fn]);
