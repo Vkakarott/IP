@@ -20,6 +20,6 @@ int main(){
         if (V[i] > K){
             count += 1;
         }
-        }
+    }
     printf("%d\n", count);
 }
