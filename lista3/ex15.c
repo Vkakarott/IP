@@ -1,57 +1,48 @@
-// FREQUENCIA DE LETRAS
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-
-// Função de comparação para qsort
-int compare(const void *a, const void *b) {
-    return (*(char*)a - *(char*)b);
-}
-
-int main() {
-    int cT, i;
-    char str[201];
-    char str2[201];
-    int ocorrencias[26] = {0};
-
-    scanf("%d", &cT);
-
-    while(cT--){
-        scanf(" %[^\n]", str);
-        int tamanho = strlen(str);
-
-        int j = 0;
-        for (i = 0; i < tamanho; i++){
-            if (isalpha(str[i])){
-                str2[j] = tolower(str[i]);
-                j++;
+    #include <stdio.h>
+    #include <string.h>
+     
+    #include <stdlib.h>
+     
+    int main(){
+     
+        int n;
+        char caracter_atual;
+        scanf("%d", &n);
+     
+        while(n--){
+            char str[300];
+            int letras[26];
+            int i;
+            scanf("\n%[^\n]", str);
+            
+            for(i=0;i<26;i++){
+                letras[i]=0;
             }
-        }
-
-        qsort(str2, j, sizeof(char), compare);
-
-        memset(ocorrencias, 0, sizeof(ocorrencias));
-
-        for (i = 0; i < tamanho; i++) {
-            ocorrencias[str2[i] - 'a']++;
-        }
-
-        int maxOcorrencias = 0;
-        for (i = 0; i < 26; i++) {
-            if (ocorrencias[i] > maxOcorrencias) {
-                maxOcorrencias = ocorrencias[i];
-        }
-        }
-
-        for (i = 0; i < 26; i++) {
-            if (ocorrencias[i] == maxOcorrencias) {
-                printf("%c", 'a' + i);
+     
+            
+            for(i=0;i<strlen(str);i++){
+               caracter_atual = str[i]; 
+               if(caracter_atual<'A' && caracter_atual>'Z' || caracter_atual<'a'&& caracter_atual>'z') continue;
+               if(caracter_atual>='A'&&caracter_atual<='Z') letras[caracter_atual - 'A'] += 1;
+               else letras[caracter_atual - 'a'] += 1;
+                
             }
+     
+            int index_maior=0;
+     
+            for(i=0;i<26;i++){
+                if(letras[index_maior]<letras[i]) index_maior=i;
+            }
+     
+            int maior_frequencia = letras[index_maior];
+            for(i=0;i<26;i++){
+            if(letras[i] == maior_frequencia){
+            printf("%c",i + 'a');}
+            }
+            printf("\n");
         }
-
-        printf("\n");
+     
+        return 0;
     }
-    return 0;
-}
+
+×
