@@ -1,31 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+ 
 typedef struct {
     double coeficiente;
     int expoente;
 } polinomio;
-
+ 
 void impressao(polinomio *resultado, int n) {
     int i;
     int flag = 0;
     for (i = n; i >= 0; i--) {
         if (resultado[i].coeficiente == 0) continue;
         if (!flag){ 
-            printf("%.2lfX ∧ %d ", resultado[i].coeficiente, resultado[i].expoente);
+            printf("%.2lfX∧%d", resultado[i].coeficiente, resultado[i].expoente);
             flag = 1;
         }
         else {
-            if (resultado[i].coeficiente > 0) printf("+ ");
-            if (resultado[i].coeficiente < 0) printf("- ");
+            if (resultado[i].coeficiente > 0) printf("+");
+            if (resultado[i].coeficiente < 0) printf("−");
             if (resultado[i].expoente == 0) printf("%.2lf", fabs(resultado[i].coeficiente));
-            else printf("%.2lfX ∧ %d ", fabs(resultado[i].coeficiente), resultado[i].expoente);
+            else printf("%.2lfX∧%d", fabs(resultado[i].coeficiente), resultado[i].expoente);
         }
     }
     printf("\n");
 }
-
+ 
 void soma(polinomio *P, int *p1, int *p2) {
     int i;
     double coeficiente;
@@ -43,7 +43,7 @@ void soma(polinomio *P, int *p1, int *p2) {
         P[expoente].expoente = expoente;
     }
 }
-
+ 
 void subtracao(polinomio *P, int *p1, int *p2) {
     int i;
     double coeficiente; 
@@ -61,12 +61,12 @@ void subtracao(polinomio *P, int *p1, int *p2) {
         P[expoente].expoente = expoente;
     }
 }
-
+ 
 int main() {
     int t, p1, p2, i;
     char op;
     polinomio *P = malloc(100 * sizeof(polinomio));
-
+ 
     scanf("%d", &t);
     while (t--) {
         scanf(" %c", &op);
@@ -80,12 +80,12 @@ int main() {
         default:
             break;
         }
-        impressao(P, p1 + p2);
+        impressao(P, 100);
         for (i = 0; i < 100; i++) {
             P[i].coeficiente = 0;
             P[i].expoente = 0;
         }
     }
-
+    free(P);
     return 0;
 }
