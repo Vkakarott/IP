@@ -1,55 +1,51 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
  
-typedef struct{
-  int moradores;
-  int consumo;
-  double cpp;
-}cidade;
+struct cidade
+{
+    int moradores;
+    int consumo;
  
-int compare(const void *a, const void *b) {
-    const cidade *cidadeA = (const cidade *)a;
-    const cidade *cidadeB = (const cidade *)b;
-
-    if (cidadeA->cpp < cidadeB->cpp) {
-        return -1;
-    } else if (cidadeA->cpp > cidadeB->cpp) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
+};
+ 
+ 
+ 
 int main(){
-    int t;
-    int n = 1;
-    while (1) {
-        int i, j;
-        double cm = 0;
-        int np = 0;
-        scanf("%d", &t);
-        if (t == 0) break;
-        cidade *imovel = (cidade*)malloc(t * sizeof(cidade));
-        if (n > 1) printf("\n \n");
-        printf("Cidade# %d:\n", n);
-        for (i = 0; i < t; i++){
-            scanf("%d %d" , &imovel[i].moradores, &imovel[i].consumo);
-            imovel[i].cpp = (double) imovel[i].consumo / imovel[i].moradores;
-            cm += imovel[i].consumo;
-            np += imovel[i].moradores;
+    int n, i, j, num = 0;
+    while (1)
+    {
+        scanf("%d", &n);
+        if (!n) break;
+        num++;
+        double media = 0;
+        int totalcid = 0, maior = 0, primeiro = 1;
+        struct cidade cid[n];
+        for (i = 0; i < n; i++) {
+            scanf("%d %d", &cid[i].moradores, &cid[i].consumo);
+            media += cid[i].consumo;
+            totalcid += cid[i].moradores;
+            cid[i].consumo /= cid[i].moradores;
+            if (maior < cid[i].consumo) maior = cid[i].consumo;
         }
-        qsort(imovel, t, sizeof(cidade), compare);
-        for (i = 0; i < t; i++) {
-            if (i > 0 && fabs(imovel[i].cpp - imovel[i - 1].cpp) < 1e-6) {
-                imovel[i].moradores += imovel[i - 1].moradores;
-            } else {
-                if (i > 0) printf(" ");
-                printf("%d-%.0lf", imovel[i].moradores, floor(imovel[i].cpp));
+ 
+        printf("Cidade# %d:\n", num);
+        for (j = 0; j <= maior; j++) {
+            int soma = 0;
+            for (i = 0; i < n; i++) {
+                if (cid[i].consumo == j) soma+= cid[i].moradores;
             }
+            if (soma != 0 && primeiro == 1) {
+                printf("%d-%d", soma, j);
+                primeiro = 0;
+            } else if (soma != 0 && primeiro == 0) {
+                printf(" %d-%d", soma, j);
+            }
+            
         }
-        printf("\nConsumo medio: %.2lf m3.", (double) cm / np);
-        free(imovel);
-        n++;
+        printf("\nConsumo medio:  %.2lf m3.\n", (double)media/totalcid);
+ 
     }
+    
+ 
+    
 }
